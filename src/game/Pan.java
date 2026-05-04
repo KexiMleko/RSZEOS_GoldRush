@@ -8,7 +8,7 @@ public class Pan extends Tool {
 
 	@Override
 	public int useTool() {
-		return 0;
+		return	getRndInt(0,60);
 	}
 	
 

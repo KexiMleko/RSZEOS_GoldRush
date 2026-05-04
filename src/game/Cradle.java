@@ -8,7 +8,9 @@ public class Cradle extends Tool{
 
 	@Override
 	public int useTool() {
-		return 0;
+		if(getRndDouble(0,1)<0.2) {
+			breakTool();
+		}
+		return getRndInt(0,30);
 	}
-
 }

@@ -8,10 +8,11 @@ public class Sluice extends Tool{
 
 	@Override
 	public int useTool() {
-		return 0;
+		reduceDurability(getRndInt(20,50));
+		return getRndInt(0,500);
 	}
 	public void repair() {
-		
+		restoreDurability();
 	}
 
 }
