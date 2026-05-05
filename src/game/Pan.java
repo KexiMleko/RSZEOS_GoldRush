@@ -2,13 +2,18 @@ package game;
 
 public class Pan extends Tool {
 
+	public Pan() {
+		super(100,"Pan");
+	}
 	public Pan(int _durability) {
-		super(_durability);
+		super(_durability,"Pan");
 	}
 
 	@Override
 	public int useTool() {
-		return	getRndInt(0,60);
+		int revenue=getRndInt(0,60);
+		printToolRevenue(revenue);
+		return revenue;
 	}
 	
 

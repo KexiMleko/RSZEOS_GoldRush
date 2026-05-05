@@ -2,8 +2,11 @@ package game;
 
 public class Cradle extends Tool{
 
+	public Cradle() {
+		super(100,"Cradle");
+	}
 	public Cradle(int _durability) {
-		super(_durability);
+		super(_durability,"Cradle");
 	}
 
 	@Override
@@ -11,6 +14,8 @@ public class Cradle extends Tool{
 		if(getRndDouble(0,1)<0.2) {
 			breakTool();
 		}
-		return getRndInt(0,30);
+		int revenue=getRndInt(0,30);
+		printToolRevenue(revenue);
+		return revenue;
 	}
 }
