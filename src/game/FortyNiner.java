@@ -59,17 +59,40 @@ private Random rnd;
 		money-=cost;
 		System.out.println("Money spent on cradles: "+cost);
 	}
-	public void itIsSundayAgain(SundayActivity activity) {
+	public boolean itIsSundayAgain(SundayActivity activity) {
 		switch(activity) {
 			case NOTHING:
-				break;
+				return true;
 			case SALOON:
+				
 				goToSaloon();
-				break;
-			case FIX_SLUICE:
+				return true;
+			case FIX_SLUICE:	
 				fixSluice();
-				break;
+				return true;
 		}
+		return false;
+	}
+	public boolean hasEnoughMoneyFor(SundayActivity activity) {
+		switch(activity) {
+		case SALOON: {
+			if(money<50) {					
+				System.out.println("Not enough money to go to Saloon, current balance: "+money);
+				return false;
+			}	
+			break;
+		}
+		case FIX_SLUICE:{
+			if(money<100) {			
+				System.out.println("Not enough money to fix sluice, current balance: "+money);
+				return false;
+			}	
+			break;
+		}
+		default:
+			break;
+		}
+		return true;
 	}
 	private void fixSluice() {
 		for(Tool tool:tools) {
@@ -77,12 +100,14 @@ private Random rnd;
 				Sluice sluice= (Sluice)tool;
 				sluice.repair();
 				money-=100;
+				System.out.println("Spent 100$ to fix sluice");
 			}
 		}
 	}
 	private void goToSaloon() {
+		int budget = money<200?money:200;
 		int enduranceGain=rnd.nextInt(5,50);
-		int cost=rnd.nextInt(50,200);
+		int cost=rnd.nextInt(50,budget);
 		endurance+=enduranceGain;
 		money-=cost;
 	}

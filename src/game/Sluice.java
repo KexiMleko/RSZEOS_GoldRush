@@ -11,8 +11,12 @@ public class Sluice extends Tool{
 
 	@Override
 	public int useTool() {
-		reduceDurability(getRndInt(20,50));
-		int revenue=getRndInt(0,500);
+
+		int revenue=0;
+		if(!isBroken()) {
+			revenue=getRndInt(0,500);
+			reduceDurability(getRndInt(20,50));
+		}
 		printToolRevenue(revenue);
 		return revenue;
 	}

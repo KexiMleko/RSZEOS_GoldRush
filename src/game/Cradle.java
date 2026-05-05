@@ -11,11 +11,14 @@ public class Cradle extends Tool{
 
 	@Override
 	public int useTool() {
-		if(getRndDouble(0,1)<0.2) {
-			breakTool();
+		int revenue=0;
+		if(!isBroken()) {		
+			if(getRndDouble(0,1)<0.2) {
+				breakTool();
+			}
+			revenue=getRndInt(0,30);
+			printToolRevenue(revenue);
 		}
-		int revenue=getRndInt(0,30);
-		printToolRevenue(revenue);
 		return revenue;
 	}
 }

@@ -55,6 +55,7 @@ public class GoldRush {
 		
 		boolean isValid=false;
 			int userInput = 0;
+			SundayActivity activity=SundayActivity.NOTHING;
 		while(!isValid) {
 			System.out.print("Choose sunday activity\n"
 						+ "0 - Nothing\n"
@@ -63,16 +64,21 @@ public class GoldRush {
 			userInput = scanner.nextInt();
 			scanner.nextLine();
 			if(userInput >=0 && userInput<=2) {
-				isValid=true;
+
+				 activity= switch (userInput) {
+					case 0 -> SundayActivity.NOTHING;
+					case 1 -> SundayActivity.FIX_SLUICE;
+					case 2 -> SundayActivity.SALOON;
+					default -> throw new IllegalArgumentException("Invalid input: " + userInput);
+				};
+				if(fortyNiner.hasEnoughMoneyFor(activity)) {		
+					isValid=true;
+				}
 			}else {
 				System.out.println("Activity input number must be 0 , 1 or 2");
 			}
 		}
-		 return switch (userInput) {
-	        case 0 -> SundayActivity.NOTHING;
-	        case 1 -> SundayActivity.FIX_SLUICE;
-	        case 2 -> SundayActivity.SALOON;
-	        default -> throw new IllegalArgumentException("Invalid input: " + userInput);
-	    };
+		return activity;
 	}
+
 }

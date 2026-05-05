@@ -40,5 +40,8 @@ protected double getRndDouble(double min,double max) {
 protected int getRndInt(int min, int max) {	
 	return rnd.nextInt(min,max);
 }
+public boolean isBroken() {
+	return durability==0;
+}
 abstract public int useTool(); 
 }
