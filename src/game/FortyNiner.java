@@ -1,6 +1,7 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Random;
 
 public class FortyNiner {
@@ -13,6 +14,8 @@ private Random rnd;
 		endurance=100;
 		rnd=new Random();
 		tools=new ArrayList<Tool>();
+		tools.add(new Sluice());
+		tools.add(new Pan());
 	}
 	public FortyNiner(int _money, int _endurance, ArrayList<Tool> _tools) {
 		money=_money;
@@ -39,11 +42,13 @@ private Random rnd;
 	public void buyFood() {
 		int cost = rnd.nextInt(30,50);	
 		money-=cost;
+		System.out.println("Money spent on food: $"+cost);
 	}
 	public void loseEndurance() {
 		int enduranceLoss=rnd.nextInt(10,25);
 		endurance-=enduranceLoss;
 		if(endurance<0)endurance=0;
+		System.out.println("Endurance reduced by: "+enduranceLoss+"%");
 	}
 	public void buyCradles(int numberToBuy) {
 		int cost=numberToBuy*30;
@@ -52,6 +57,7 @@ private Random rnd;
 			tools.add(cradle);
 		}
 		money-=cost;
+		System.out.println("Money spent on cradles: "+cost);
 	}
 	public void itIsSundayAgain(SundayActivity activity) {
 		switch(activity) {
@@ -79,5 +85,19 @@ private Random rnd;
 		int cost=rnd.nextInt(50,200);
 		endurance+=enduranceGain;
 		money-=cost;
+	}
+	public void printStats() {
+		   System.out.println("---------------------------------------------");
+		    System.out.printf("Money:     $%d%n", money);
+		    System.out.printf("Endurance: %d%%%n", endurance);
+		    System.out.println("---------------------------------------------");
+	}
+	public int getSluiceDurability() {
+		for(Tool tool: tools) {
+			if(tool instanceof Sluice) {
+				return tool.getDurability();
+			}
+		}
+		throw new NoSuchElementException("No sluice found");
 	}
 }

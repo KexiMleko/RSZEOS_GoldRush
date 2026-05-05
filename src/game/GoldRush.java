@@ -23,31 +23,33 @@ public class GoldRush {
 			}
 		while(weekCount<20) {		
 
-			System.out.printf("Week No. %d has started\n",weekCount+1);
+			weekCount++;
+
+			System.out.printf("Week No. %d has started\n",weekCount);
+
+			SundayActivity activity= getSundayActivity();
+			fortyNiner.itIsSundayAgain(activity);
+			System.out.println("How many cradles do you want to buy");
+
+			int cradlesToBuy = scanner.nextInt();
+			scanner.nextLine();
+			fortyNiner.buyCradles(cradlesToBuy);
+
 			fortyNiner.useTools();
 			fortyNiner.buyFood();
 			fortyNiner.loseEndurance();
 
 			System.out.println("Do you wish to stop playing? Type y for yes");
 			String continueInput=scanner.nextLine();
-			if(continueInput=="y") {		
+			fortyNiner.printStats();
+			if(continueInput.equalsIgnoreCase("y")) {		
 				saveGame();
-				System.exit(0);
+				return;
 			}
 
-			System.out.println("Activity input number must be 0 , 1 or 2");
-			SundayActivity activity= getSundayActivity();
-			fortyNiner.itIsSundayAgain(activity);
-
-			System.out.println("How many cradles do you want to buy");
-
-			int cradlesToBuy= scanner.nextInt();
-			fortyNiner.buyCradles(cradlesToBuy);
-
-			weekCount++;
 		}
 		System.out.println("20 Weeks have passed, the game has ended");
-		System.out.println("Money");
+		System.out.println("Final money: $" + fortyNiner.getMoney());
 	}
 	private SundayActivity getSundayActivity() {
 		
@@ -56,9 +58,10 @@ public class GoldRush {
 		while(!isValid) {
 			System.out.print("Choose sunday activity\n"
 						+ "0 - Nothing\n"
-						+ "1 - Fix sluice\n"
+						+ "1 - Fix sluice - durability: "+fortyNiner.getSluiceDurability()+"%\n"
 						+ "2 - Go to saloon\n");
-			userInput= scanner.nextInt();
+			userInput = scanner.nextInt();
+			scanner.nextLine();
 			if(userInput >=0 && userInput<=2) {
 				isValid=true;
 			}else {
