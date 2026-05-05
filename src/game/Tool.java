@@ -14,7 +14,7 @@ public int getDurability() {
 }
 protected void reduceDurability(int value) {
 	if(value<0) throw new IllegalArgumentException("Durability reduction value cant be negative");
-int	newDurability=durability-value;
+	int	newDurability=durability-value;
 	durability=newDurability>0?newDurability:0;
 }
 protected void breakTool() {

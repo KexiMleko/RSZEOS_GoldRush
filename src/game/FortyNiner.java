@@ -8,10 +8,17 @@ private int endurance;
 private int money;
 private ArrayList<Tool> tools;
 private Random rnd;
+	public FortyNiner() {
+		money=100;
+		endurance=100;
+		rnd=new Random();
+		tools=new ArrayList<Tool>();
+	}
 	public FortyNiner(int _money, int _endurance, ArrayList<Tool> _tools) {
 		money=_money;
 		endurance=_endurance;
 		tools=_tools;
+		rnd=new Random();
 	}
 	public int getEndurance() {     return endurance; }  
 	public void setEndurance(int endurance) {
@@ -37,6 +44,14 @@ private Random rnd;
 		int enduranceLoss=rnd.nextInt(10,25);
 		endurance-=enduranceLoss;
 		if(endurance<0)endurance=0;
+	}
+	public void buyCradles(int numberToBuy) {
+		int cost=numberToBuy*30;
+		for(int i=0;i<numberToBuy;i++) {
+			Cradle cradle=new Cradle(100);
+			tools.add(cradle);
+		}
+		money-=cost;
 	}
 	public void itIsSundayAgain(SundayActivity activity) {
 		switch(activity) {
