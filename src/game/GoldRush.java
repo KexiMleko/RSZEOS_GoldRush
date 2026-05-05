@@ -1,21 +1,34 @@
 package game;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.nio.file.Files;
 
 public class GoldRush {
 	private FortyNiner fortyNiner;
 	private File savedGame;
 	private Scanner scanner;
+	private static final String SAVE_FILE = "savegame.txt";
 	private int weekCount;
 	public GoldRush() {
 		scanner=new Scanner(System.in);
+		 savedGame = new File(SAVE_FILE);
 	}
 	public void loadGame() {
 		
 	}
 	public void saveGame() {
-		
+		List<String> lines = new ArrayList<>();
+		lines.add("Week no. " + weekCount);
+		lines.addAll(fortyNiner.serialize());
+	    try {
+			Files.write(savedGame.toPath(), lines);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	public void survive() {
 			if(fortyNiner==null) {

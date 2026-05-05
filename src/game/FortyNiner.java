@@ -1,6 +1,7 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Random;
 
@@ -23,6 +24,17 @@ private Random rnd;
 		tools=_tools;
 		rnd=new Random();
 	}
+public List<String> serialize(){
+    List<String> lines = new ArrayList<>();
+    lines.add("49er endurance: " + endurance + "%");
+    lines.add("49er money: $" + money);
+    for (Tool t : tools) {
+    	if(!(t instanceof Pan)) { 	
+    		lines.add(t.serialize());
+    	}
+    }
+    return lines;
+}
 	public int getEndurance() {     return endurance; }  
 	public void setEndurance(int endurance) {
 		this.endurance = endurance>0?endurance:0; 

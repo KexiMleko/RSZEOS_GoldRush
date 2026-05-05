@@ -43,5 +43,8 @@ protected int getRndInt(int min, int max) {
 public boolean isBroken() {
 	return durability==0;
 }
+public String serialize() {
+    return toolName + " durability: " + durability + "%";
+}
 abstract public int useTool(); 
 }
