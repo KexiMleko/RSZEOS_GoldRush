@@ -36,6 +36,9 @@ private Random rnd;
 		}
 		for(Tool tool : tools) {
 			int revenue=tool.useTool();	
+			if(tool.isBroken() && tool instanceof Cradle) {
+				tools.remove(tool);
+			}
 			money+=revenue;
 		}
 	}
