@@ -1,6 +1,7 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Random;
@@ -46,13 +47,15 @@ public List<String> serialize(){
 			endurance=100;
 			return;
 		}
-		for(Tool tool : tools) {
-			int revenue=tool.useTool();	
-			if(tool.isBroken() && tool instanceof Cradle) {
-				tools.remove(tool);
-			}
-			money+=revenue;
+		Iterator<Tool> it = tools.iterator();
+		while (it.hasNext()) {
+		    Tool tool = it.next();
+		    money += tool.useTool();
+		    if (tool.isBroken() && tool instanceof Cradle) {
+		        it.remove();
+		    }
 		}
+
 	}
 	public void buyFood() {
 		int cost = rnd.nextInt(30,50);	
