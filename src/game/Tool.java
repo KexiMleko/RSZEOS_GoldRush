@@ -21,7 +21,7 @@ protected void reduceDurability(int value) {
 	if(value<0) throw new IllegalArgumentException("Durability reduction value cant be negative");
 	int	newDurability=durability-value;
 	durability=Math.max(newDurability, 0);
-	System.out.println(toolName + " durability reduced to " + durability);
+	System.out.println(toolName + " durability reduced to " + durability+"%");
 }
 protected void breakTool() {
 	durability=0;

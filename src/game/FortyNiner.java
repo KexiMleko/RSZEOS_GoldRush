@@ -96,21 +96,21 @@ public List<String> serialize(){
 	}
 	public boolean hasEnoughMoneyForCradles(int cradleCount) {
 		boolean canBuy	= money>=(cradleCount*30);
-		if(!canBuy)System.out.println("Not enough money for "+cradleCount+" cradles, current money balance: "+money);
+		if(!canBuy)System.out.println("Not enough money for "+cradleCount+" cradles, current money balance: $"+money);
 		return canBuy;
 	}
 	public boolean hasEnoughMoneyFor(SundayActivity activity) {
 		switch(activity) {
 		case SALOON: {
 			if(money<50) {					
-				System.out.println("Not enough money to go to Saloon, current balance: "+money);
+				System.out.println("Not enough money to go to Saloon, current balance: $"+money);
 				return false;
 			}	
 			break;
 		}
 		case FIX_SLUICE:{
 			if(money<100) {			
-				System.out.println("Not enough money to fix sluice, current balance: "+money);
+				System.out.println("Not enough money to fix sluice, current balance: $"+money);
 				return false;
 			}	
 			break;
@@ -126,7 +126,7 @@ public List<String> serialize(){
 				Sluice sluice= (Sluice)tool;
 				sluice.repair();
 				money-=100;
-				System.out.println("Spent 100$ to fix sluice");
+				System.out.println("Spent $100 to fix sluice");
 			}
 		}
 	}

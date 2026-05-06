@@ -36,8 +36,8 @@ public class GoldRush {
 		    tools.add(toolFromLine(lines.get(i)));
 		}
 	System.out.println("Loaded stats: ");
-	System.out.println("Money: "+money);
-	System.out.println("Endurance: "+endurance);
+	System.out.println("Money: $"+money);
+	System.out.println("Endurance: "+endurance+"%");
 	System.out.println("Cradles owned: "+(tools.size()-2));
 	System.out.println("------------------------");
 		fortyNiner = new FortyNiner(money, endurance, tools);	
