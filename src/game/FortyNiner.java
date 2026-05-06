@@ -39,13 +39,12 @@ public List<String> serialize(){
 }
 	public int getEndurance() {     return endurance; }  
 	public void setEndurance(int endurance) {
-		this.endurance = endurance>0?endurance:0; 
+		this.endurance = Math.max(endurance, 0);
 		}  
 	public int getMoney() {     return money; }  
 	public void setMoney(int money) {     this.money = money; }
 	public void useTools() {
 		if(endurance==0) {
-			endurance=100;
 			return;
 		}
 		Iterator<Tool> it = tools.iterator();
@@ -66,8 +65,7 @@ public List<String> serialize(){
 	}
 	public void loseEndurance() {
 		int enduranceLoss=rnd.nextInt(10,25);
-		endurance-=enduranceLoss;
-		if(endurance<0)endurance=0;
+		setEndurance(endurance-enduranceLoss);
 		System.out.println("Endurance reduced by: "+enduranceLoss+"%");
 	}
 
