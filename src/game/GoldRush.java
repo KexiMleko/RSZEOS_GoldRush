@@ -37,7 +37,9 @@ public class GoldRush {
 		}
 	System.out.println("Loaded stats: ");
 	System.out.println("Money: "+money);
-	System.out.println("endurance: "+endurance);
+	System.out.println("Endurance: "+endurance);
+	System.out.println("Cradles owned: "+(tools.size()-2));
+	System.out.println("------------------------");
 		fortyNiner = new FortyNiner(money, endurance, tools);	
 	}
 	public void saveGame() {
@@ -65,9 +67,7 @@ public class GoldRush {
 			SundayActivity activity= getSundayActivity();
 			fortyNiner.itIsSundayAgain(activity);
 			System.out.println("How many cradles do you want to buy");
-
-			int cradlesToBuy = scanner.nextInt();
-			scanner.nextLine();
+			int cradlesToBuy=getCradleCount();
 			fortyNiner.buyCradles(cradlesToBuy);
 
 			fortyNiner.useTools();
@@ -85,6 +85,16 @@ public class GoldRush {
 		}
 		System.out.println("20 Weeks have passed, the game has ended");
 		System.out.println("Final money: $" + fortyNiner.getMoney());
+	}
+	private int getCradleCount() {
+		boolean	isValidCount=false;
+		int cradlesToBuy=0;
+		while(!isValidCount) {
+			cradlesToBuy = scanner.nextInt();
+			scanner.nextLine();
+			isValidCount=fortyNiner.hasEnoughMoneyForCradles(cradlesToBuy);			
+		}
+		return cradlesToBuy;
 	}
 	private SundayActivity getSundayActivity() {
 		

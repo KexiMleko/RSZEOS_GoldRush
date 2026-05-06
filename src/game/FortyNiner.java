@@ -23,6 +23,7 @@ private Random rnd;
 		money=_money;
 		endurance=_endurance;
 		tools=_tools;
+		tools.add(new Pan());
 		rnd=new Random();
 	}
 public List<String> serialize(){
@@ -60,6 +61,7 @@ public List<String> serialize(){
 	public void buyFood() {
 		int cost = rnd.nextInt(30,50);	
 		money-=cost;
+		if(money<0)money=0;
 		System.out.println("Money spent on food: $"+cost);
 	}
 	public void loseEndurance() {
@@ -68,14 +70,17 @@ public List<String> serialize(){
 		if(endurance<0)endurance=0;
 		System.out.println("Endurance reduced by: "+enduranceLoss+"%");
 	}
-	public void buyCradles(int numberToBuy) {
+
+	public boolean buyCradles(int numberToBuy) {
 		int cost=numberToBuy*30;
+		if(money<cost)return false;
 		for(int i=0;i<numberToBuy;i++) {
 			Cradle cradle=new Cradle(100);
 			tools.add(cradle);
 		}
 		money-=cost;
 		System.out.println("Money spent on cradles: "+cost);
+		return true;
 	}
 	public boolean itIsSundayAgain(SundayActivity activity) {
 		switch(activity) {
@@ -90,6 +95,11 @@ public List<String> serialize(){
 				return true;
 		}
 		return false;
+	}
+	public boolean hasEnoughMoneyForCradles(int cradleCount) {
+		boolean canBuy	= money>=(cradleCount*30);
+		if(!canBuy)System.out.println("Not enough money for "+cradleCount+" cradles, current money balance: "+money);
+		return canBuy;
 	}
 	public boolean hasEnoughMoneyFor(SundayActivity activity) {
 		switch(activity) {
@@ -128,6 +138,7 @@ public List<String> serialize(){
 		int cost=rnd.nextInt(50,budget);
 		endurance+=enduranceGain;
 		money-=cost;
+		System.out.println("Saloon restored "+enduranceGain+"%"+" and cost $"+cost);
 	}
 	public void printStats() {
 		   System.out.println("---------------------------------------------");
