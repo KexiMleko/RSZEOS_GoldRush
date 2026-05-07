@@ -11,7 +11,7 @@ public class Pan extends Tool {
 
 	@Override
 	public int useTool() {
-		int revenue=getRndInt(0,60);
+		int revenue=getRndInt(0,61);
 		printToolRevenue(revenue);
 		return revenue;
 	}

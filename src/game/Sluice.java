@@ -14,8 +14,8 @@ public class Sluice extends Tool{
 
 		int revenue=0;
 		if(!isBroken()) {
-			revenue=getRndInt(0,500);
-			reduceDurability(getRndInt(20,50));
+			revenue=getRndInt(0,501);
+			reduceDurability(getRndInt(20,51));
 		}
 		printToolRevenue(revenue);
 		return revenue;

@@ -58,13 +58,13 @@ public List<String> serialize(){
 
 	}
 	public void buyFood() {
-		int cost = rnd.nextInt(30,50);	
+		int cost = rnd.nextInt(30,51);	
 		money-=cost;
 		if(money<0)money=0;
 		System.out.println("Money spent on food: $"+cost);
 	}
 	public void loseEndurance() {
-		int enduranceLoss=rnd.nextInt(10,25);
+		int enduranceLoss=rnd.nextInt(10,26);
 		setEndurance(endurance-enduranceLoss);
 		System.out.println("Endurance reduced by: "+enduranceLoss+"%");
 	}
@@ -132,9 +132,9 @@ public List<String> serialize(){
 	}
 	private void goToSaloon() {
 		int budget = money<200?money:200;
-		int enduranceGain=rnd.nextInt(5,50);
-		int cost=rnd.nextInt(50,budget);
-		endurance+=enduranceGain;
+		int enduranceGain=rnd.nextInt(5,51);
+		int cost=rnd.nextInt(50,budget+1);
+		endurance=Math.min(enduranceGain+endurance, 100);
 		money-=cost;
 		System.out.println("Saloon restored "+enduranceGain+"%"+" and cost $"+cost);
 	}

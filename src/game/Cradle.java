@@ -16,7 +16,7 @@ public class Cradle extends Tool{
 			if(getRndDouble(0,1)<0.2) {
 				breakTool();
 			}
-			revenue=getRndInt(0,30);
+			revenue=getRndInt(0,31);
 			printToolRevenue(revenue);
 		}
 		return revenue;
